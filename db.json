@@ -1,0 +1,115 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Amarnathan V",
+      "email": "amarnathan.v@example.com",
+      "DOB": "2003-05-15",
+      "phoneNo": "+91-9876543210",
+      "password": "securePass123!"
+    }
+  ],
+  "events": [
+    [
+      {
+        "id": "EVENT20260424",
+        "name": "IPL Match: CSK vs MI",
+        "date": "2026-05-10T19:30:00+05:30",
+        "venue": "MA Chidambaram Stadium, Chennai",
+        "description": "Exciting clash in Indian Premier League 2026 between Chennai Super Kings and Mumbai Indians.",
+        "ticketPrice": 2500,
+        "availableSeats": ["A1", "A5", "B2", "C3", "D4"],
+        "posterUrl": "https://example.com/images/ipl-csk-vs-mi-poster.jpg",
+        "bannerUrl": "https://example.com/images/ipl-csk-vs-mi-banner.jpg"
+      },
+      {
+        "id": "EVENT20260425",
+        "name": "Movie Premiere: Avengers Reborn",
+        "date": "2026-06-01T18:00:00+05:30",
+        "venue": "PVR Cinemas, Chennai",
+        "description": "Grand premiere of the much-awaited Marvel movie Avengers Reborn.",
+        "ticketPrice": 799,
+        "availableSeats": ["P1", "P2", "P3", "P4", "P5"],
+        "posterUrl": "https://example.com/images/avengers-reborn-poster.jpg",
+        "bannerUrl": "https://example.com/images/avengers-reborn-banner.jpg"
+      },
+      {
+        "id": "EVENT20260426",
+        "name": "AR Rahman Live Concert",
+        "date": "2026-05-20T19:00:00+05:30",
+        "venue": "Jawaharlal Nehru Stadium, Chennai",
+        "description": "Live musical night with A. R. Rahman.",
+        "ticketPrice": 4999,
+        "availableSeats": ["VIP1", "VIP2", "G1", "G2", "G3"],
+        "posterUrl": "https://example.com/images/ar-rahman-concert-poster.jpg",
+        "bannerUrl": "https://example.com/images/ar-rahman-concert-banner.jpg"
+      },
+      {
+        "id": "EVENT20260427",
+        "name": "Stand-up Comedy Night",
+        "date": "2026-05-18T20:00:00+05:30",
+        "venue": "Phoenix Marketcity, Chennai",
+        "description": "Laugh out loud with top Indian comedians in a live stand-up show.",
+        "ticketPrice": 999,
+        "availableSeats": ["S1", "S2", "S3", "S4", "S5"],
+        "posterUrl": "https://example.com/images/comedy-night-poster.jpg",
+        "bannerUrl": "https://example.com/images/comedy-night-banner.jpg"
+      },
+      {
+        "id": "EVENT20260428",
+        "name": "Tech Conference 2026",
+        "date": "2026-06-10T10:00:00+05:30",
+        "venue": "Chennai Trade Centre",
+        "description": "Explore AI, ML, and future tech innovations with industry experts.",
+        "ticketPrice": 1999,
+        "availableSeats": ["T1", "T2", "T3", "T4", "T5"],
+        "posterUrl": "https://example.com/images/tech-conference-poster.jpg",
+        "bannerUrl": "https://example.com/images/tech-conference-banner.jpg"
+      },
+      {
+        "id": "EVENT20260429",
+        "name": "Movie Release: Leo 2",
+        "date": "2026-07-15T09:00:00+05:30",
+        "venue": "Rohini Theatre, Chennai",
+        "description": "First day first show of Leo 2 starring Vijay.",
+        "ticketPrice": 500,
+        "availableSeats": ["F1", "F2", "F3", "F4", "F5"],
+        "posterUrl": "https://example.com/images/leo2-poster.jpg",
+        "bannerUrl": "https://example.com/images/leo2-banner.jpg"
+      },
+      {
+        "id": "EVENT20260430",
+        "name": "EDM Night Festival",
+        "date": "2026-06-25T21:00:00+05:30",
+        "venue": "ECR Beach Arena, Chennai",
+        "description": "High-energy EDM party featuring international DJs and light shows.",
+        "ticketPrice": 2999,
+        "availableSeats": ["E1", "E2", "E3", "E4", "E5"],
+        "posterUrl": "https://example.com/images/edm-night-poster.jpg",
+        "bannerUrl": "https://example.com/images/edm-night-banner.jpg"
+      },
+      {
+        "id": "EVENT20260501",
+        "name": "IPL Match: RCB vs KKR",
+        "date": "2026-05-13T19:30:00+05:30",
+        "venue": "M Chinnaswamy Stadium, Bangalore",
+        "description": "Thrilling IPL match between Royal Challengers Bangalore and Kolkata Knight Riders.",
+        "ticketPrice": 2200,
+        "availableSeats": ["R1", "R2", "R3", "R4", "R5"],
+        "posterUrl": "https://example.com/images/rcb-vs-kkr-poster.jpg",
+        "bannerUrl": "https://example.com/images/rcb-vs-kkr-banner.jpg"
+      }
+    ]
+  ],
+  "booking": [
+    {
+      "id": "",
+      "userId": "",
+      "eventId": "",
+      "seats": [""],
+      "amount": 0,
+      "bookingStatus": "",
+      "createdAt": ""
+    }
+  ]
+}
