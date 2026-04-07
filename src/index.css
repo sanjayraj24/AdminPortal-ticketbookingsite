@@ -608,3 +608,7 @@ button:disabled:hover,
   opacity: 0.5 !important;
   background-color: inherit !important;
 }
+
+.input {
+  @apply rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400;
+}

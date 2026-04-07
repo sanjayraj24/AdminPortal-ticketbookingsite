@@ -14,6 +14,7 @@ const CreateEvent = () => {
     dateTime: "",
     price: "",
     status: "published",
+    seatMap: "[]",
     totalSeats: "",
     availableSeats: "",
     description: "",
@@ -32,6 +33,10 @@ const CreateEvent = () => {
     setSaving(true);
 
     try {
+      if (Number(formData.availableSeats) > Number(formData.totalSeats)) {
+        throw new Error("Available seats cannot exceed total seats.");
+      }
+
       const payload = {
         title: formData.title,
         category: formData.category,
@@ -46,9 +51,19 @@ const CreateEvent = () => {
         availableSeats: Number(formData.availableSeats) || 0,
         description: formData.description,
         posterUrl: formData.posterUrl,
+        seatMap: formData.seatMap
+          ? (() => {
+              try {
+                return JSON.parse(formData.seatMap);
+              } catch {
+                throw new Error("Invalid seatMap JSON format.");
+              }
+            })()
+          : [],
       };
 
       await post(EVENT_PATH, payload);
+
       navigate("/admin/events");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unable to create event.");
@@ -204,6 +219,20 @@ const CreateEvent = () => {
               onChange={(e) => handleChange("posterUrl", e.target.value)}
               className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
             />
+          </label>
+
+          <label className="flex flex-col gap-2 text-sm text-slate-700">
+            Seat Map (JSON array)
+            <textarea
+              value={formData.seatMap}
+              onChange={(e) => handleChange("seatMap", e.target.value)}
+              rows={10}
+              placeholder='[{"id":"A1","row":"A","number":1,"type":"VIP","price":1299,"status":"available"}]'
+              className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400 font-mono text-xs"
+            />
+            <p className="mt-1 text-xs text-slate-500">
+              Paste JSON array of seats (used for booking/seat selection)
+            </p>
           </label>
 
           <div className="flex flex-col gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:items-center sm:justify-between">

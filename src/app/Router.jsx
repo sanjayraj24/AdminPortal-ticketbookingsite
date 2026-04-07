@@ -21,7 +21,6 @@ import AdminEvents from "../pages/admin/AdminEvents";
 import CreateEvent from "../pages/admin/CreateEvent";
 import EditEvent from "../pages/admin/EditEvent";
 import AdminBookings from "../pages/admin/AdminBookings";
-import AdminAnalytics from "../pages/admin/AdminAnalytics";
 
 import NotFound from "../pages/NotFound";
 
@@ -29,10 +28,8 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* ================= USER ROUTES ================= */}
         <Route path="/" element={<UserLayout />}>
-
           <Route index element={<Home />} />
           {/* <Route path="events" element={<Events />} /> */}
           <Route path="events/:id" element={<EventDetailsPage />} />
@@ -51,7 +48,6 @@ function Router() {
               </ProtectedRoute>
             }
           />
-
         </Route>
 
         {/* ================= ADMIN LOGIN ================= */}
@@ -72,12 +68,10 @@ function Router() {
           <Route path="events/new" element={<CreateEvent />} />
           <Route path="events/:id/edit" element={<EditEvent />} />
           <Route path="bookings" element={<AdminBookings />} />
-          <Route path="analytics" element={<AdminAnalytics />} />
         </Route>
 
         {/* ================= NOT FOUND ================= */}
         <Route path="*" element={<NotFound />} />
-
       </Routes>
     </BrowserRouter>
   );
