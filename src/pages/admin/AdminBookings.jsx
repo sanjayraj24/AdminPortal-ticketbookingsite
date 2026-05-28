@@ -190,8 +190,237 @@ const AdminBookings = () => {
           </div>
         </div>
       </div>
+<div className="grid gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-12">
+  <div className="grid gap-4 sm:col-span-10">
+    <div className="grid gap-3 sm:grid-cols-6">
+      <label className="flex flex-col gap-2 text-sm text-slate-700">
+        Payment Status
+        <select
+          value={filters.paymentStatus}
+          onChange={(e) =>
+            handleFilterChange("paymentStatus", e.target.value)
+          }
+          className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+        >
+          <option value="">All</option>
+          {paymentStatuses.map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
+        </select>
+      </label>
 
-      {/* KEEP YOUR OLD TABLE / FILTER / MODAL JSX BELOW THIS */}
+      <label className="flex flex-col gap-2 text-sm text-slate-700">
+        Booking Status
+        <select
+          value={filters.bookingStatus}
+          onChange={(e) =>
+            handleFilterChange("bookingStatus", e.target.value)
+          }
+          className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+        >
+          <option value="">All</option>
+          {bookingStatuses.map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className="flex flex-col gap-2 text-sm text-slate-700">
+        Event Search
+        <input
+          type="text"
+          value={filters.eventSearch}
+          onChange={(e) =>
+            handleFilterChange("eventSearch", e.target.value)
+          }
+          placeholder="Search events..."
+          className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+        />
+      </label>
+
+      <label className="flex flex-col gap-2 text-sm text-slate-700">
+        Start Date
+        <input
+          type="date"
+          value={filters.startDate}
+          onChange={(e) =>
+            handleFilterChange("startDate", e.target.value)
+          }
+          className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+        />
+      </label>
+
+      <label className="flex flex-col gap-2 text-sm text-slate-700">
+        End Date
+        <input
+          type="date"
+          value={filters.endDate}
+          onChange={(e) =>
+            handleFilterChange("endDate", e.target.value)
+          }
+          className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-slate-400"
+        />
+      </label>
+
+      <button
+        type="button"
+        onClick={clearFilters}
+        className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+      >
+        Clear filters
+      </button>
+    </div>
+  </div>
+</div>
+
+<div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <div className="rounded-3xl bg-emerald-50 px-4 py-4 text-sm font-semibold text-emerald-900 shadow-sm">
+    <p className="text-emerald-600">Total Revenue</p>
+    <p className="mt-1 text-lg text-emerald-900">
+      ₹{totalRevenue.toLocaleString()}
+    </p>
+  </div>
+
+  <div className="rounded-3xl bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-900 shadow-sm">
+    <p className="text-slate-600">Pending Payments</p>
+    <p className="mt-1 text-lg text-slate-900">
+      ₹{pendingAmount.toLocaleString()}
+    </p>
+  </div>
+
+  <div className="rounded-3xl bg-slate-50 px-4 py-4 text-sm font-semibold text-slate-900 shadow-sm">
+    <p className="text-slate-600">Total Bookings</p>
+    <p className="mt-1 text-lg text-slate-900">
+      {filteredBookings.length}
+    </p>
+  </div>
+</div>
+
+{error ? (
+  <div className="rounded-3xl bg-rose-50 p-6 text-rose-700 ring-1 ring-rose-200">
+    <p className="font-semibold">Error</p>
+    <p>{error}</p>
+
+    <button
+      onClick={loadData}
+      className="mt-4 inline-flex items-center rounded-2xl bg-rose-600 px-4 py-2 text-sm font-semibold text-white hover:bg-rose-700"
+    >
+      Retry
+    </button>
+  </div>
+) : null}
+
+<div className="overflow-x-auto rounded-3xl border border-slate-200 bg-white shadow-sm">
+  <table className="min-w-full divide-y divide-slate-200">
+    <thead className="bg-slate-50 text-left text-sm uppercase tracking-wide text-slate-600">
+      <tr>
+        <th className="px-4 py-4">User & Event</th>
+        <th className="px-4 py-4">Seats & Amount</th>
+        <th className="px-4 py-4">Payment Status</th>
+        <th className="px-4 py-4">Booking Status</th>
+        <th className="px-4 py-4">Created</th>
+        <th className="px-4 py-4 text-right">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody className="divide-y divide-slate-200 bg-white text-sm">
+      {filteredBookings.map((booking) => (
+        <tr key={booking.id} className="hover:bg-slate-50">
+          <td className="px-4 py-4">
+            <div className="space-y-1">
+              <p className="font-semibold text-slate-900">
+                {getUserDisplayName(booking, users)}
+              </p>
+
+              <p className="text-sm text-slate-500">
+                {booking.eventTitle}
+              </p>
+            </div>
+          </td>
+
+          <td className="px-4 py-4">
+            <div className="space-y-1">
+              <p className="font-mono text-sm">
+                {booking.seats.join(", ")}
+              </p>
+
+              <p className="font-semibold text-emerald-600">
+                ₹{booking.amount.toLocaleString()}
+              </p>
+            </div>
+          </td>
+
+          <td className="px-4 py-4">
+            <span
+              className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+                booking.paymentStatus === "paid"
+                  ? "bg-emerald-100 text-emerald-700"
+                  : "bg-amber-100 text-amber-700"
+              }`}
+            >
+              {booking.paymentStatus}
+            </span>
+          </td>
+
+          <td className="px-4 py-4">
+            <span
+              className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+                booking.bookingStatus === "confirmed"
+                  ? "bg-emerald-100 text-emerald-700"
+                  : booking.bookingStatus === "reserved"
+                  ? "bg-amber-100 text-amber-700"
+                  : "bg-rose-100 text-rose-700"
+              }`}
+            >
+              {booking.bookingStatus}
+            </span>
+          </td>
+
+          <td className="px-4 py-4 text-sm text-slate-500">
+            {new Date(booking.createdAt).toLocaleDateString()}
+          </td>
+
+          <td className="px-4 py-4 text-right">
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => openDetailsModal(booking)}
+                className="rounded-2xl bg-slate-50 px-3 py-2 text-sm font-semibold text-slate-700 ring-1 ring-slate-200 transition hover:bg-slate-100"
+              >
+                View
+              </button>
+
+              {booking.bookingStatus !== "cancelled" && (
+                <button
+                  type="button"
+                  onClick={() => openCancelModal(booking)}
+                  className="rounded-2xl bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-700 ring-1 ring-rose-200 transition hover:bg-rose-100"
+                >
+                  Cancel
+                </button>
+              )}
+            </div>
+          </td>
+        </tr>
+      ))}
+
+      {!filteredBookings.length ? (
+        <tr>
+          <td
+            colSpan="6"
+            className="px-4 py-8 text-center text-sm text-slate-500"
+          >
+            No bookings match the selected filters.
+          </td>
+        </tr>
+      ) : null}
+    </tbody>
+  </table>
+</div>
     </div>
   );
 };
