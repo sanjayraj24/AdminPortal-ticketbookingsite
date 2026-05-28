@@ -17,7 +17,7 @@ useEffect(() => {
     try {
       const [eventsRes, bookingsRes, usersRes] = await Promise.all([
         fetch("https://adminportal-ticketbookingsite.onrender.com/events"),
-        fetch("https://adminportal-ticketbookingsite.onrender.com/booking"),
+        fetch("https://adminportal-ticketbookingsite.onrender.com/bookings"),
         fetch("https://adminportal-ticketbookingsite.onrender.com/users"),
       ]);
 

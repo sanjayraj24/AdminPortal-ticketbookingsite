@@ -12,7 +12,7 @@ import {
 const API_BASE_URL =
   "https://adminportal-ticketbookingsite.onrender.com";
 
-const BOOKING_PATH = "/booking";
+const BOOKING_PATH = "/bookings";
 
 const AdminBookings = () => {
   const [bookings, setBookings] = useState([]);
