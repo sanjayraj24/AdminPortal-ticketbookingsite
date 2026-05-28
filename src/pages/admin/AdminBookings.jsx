@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 
 import { useApi } from "../../hooks/useApi";
@@ -9,15 +8,13 @@ import {
   getUserDisplayName,
 } from "../../services/bookingService";
 
-const API_BASE_URL =
-  "https://adminportal-ticketbookingsite.onrender.com";
-
 const BOOKING_PATH = "/bookings";
 
 const AdminBookings = () => {
   const [bookings, setBookings] = useState([]);
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
+
   const [filters, setFilters] = useState({
     paymentStatus: "",
     bookingStatus: "",
@@ -25,11 +22,16 @@ const AdminBookings = () => {
     startDate: "",
     endDate: "",
   });
+
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [cancellingBooking, setCancellingBooking] = useState(null);
   const [cancelLoading, setCancelLoading] = useState(false);
+
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
+
+  const API_BASE_URL =
+    "https://adminportal-ticketbookingsite.onrender.com";
 
   const { get, put, loading } = useApi(API_BASE_URL);
 
@@ -189,7 +191,7 @@ const AdminBookings = () => {
         </div>
       </div>
 
-      {/* Remaining UI stays exactly same */}
+      {/* KEEP YOUR OLD TABLE / FILTER / MODAL JSX BELOW THIS */}
     </div>
   );
 };
