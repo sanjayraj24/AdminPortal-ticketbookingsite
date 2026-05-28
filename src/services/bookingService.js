@@ -1,4 +1,4 @@
-export const BOOKING_PATH = "/booking";
+export const BOOKING_PATH = "/bookings";
 
 export const filterBookings = (bookings, filters) => {
   const { paymentStatus, bookingStatus, eventSearch, startDate, endDate } =
