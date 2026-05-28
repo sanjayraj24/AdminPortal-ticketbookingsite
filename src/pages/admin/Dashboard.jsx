@@ -12,37 +12,39 @@ const Dashboard = () => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [eventsRes, bookingsRes, usersRes] = await Promise.all([
-          fetch("https://adminportal-ticketbookingsite.onrender.com"),
-          fetch("https://adminportal-ticketbookingsite.onrender.com"),
-          fetch("https://adminportal-ticketbookingsite.onrender.com"),
-        ]);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const [eventsRes, bookingsRes, usersRes] = await Promise.all([
+        fetch("https://adminportal-ticketbookingsite.onrender.com/events"),
+        fetch("https://adminportal-ticketbookingsite.onrender.com/booking"),
+        fetch("https://adminportal-ticketbookingsite.onrender.com/users"),
+      ]);
 
-        if (!eventsRes.ok || !bookingsRes.ok || !usersRes.ok) {
-          throw new Error("Failed to load dashboard data.");
-        }
-
-        const [eventsData, bookingsData, usersData] = await Promise.all([
-          eventsRes.json(),
-          bookingsRes.json(),
-          usersRes.json(),
-        ]);
-
-        setEvents(eventsData);
-        setBookings(bookingsData);
-        setUsers(usersData);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unable to fetch dashboard data.");
-      } finally {
-        setLoading(false);
+      if (!eventsRes.ok || !bookingsRes.ok || !usersRes.ok) {
+        throw new Error("Failed to load dashboard data.");
       }
-    };
 
-    fetchData();
-  }, []);
+      const [eventsData, bookingsData, usersData] = await Promise.all([
+        eventsRes.json(),
+        bookingsRes.json(),
+        usersRes.json(),
+      ]);
+
+      setEvents(eventsData);
+      setBookings(bookingsData);
+      setUsers(usersData);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to fetch dashboard data.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, []);
+
+
 
   const totalRevenue = useMemo(
     () => bookings.reduce((sum, item) => sum + (item.paymentStatus === "paid" ? Number(item.amount || 0) : 0), 0),
